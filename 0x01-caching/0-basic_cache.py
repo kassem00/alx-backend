@@ -1,32 +1,24 @@
 #!/usr/bin/python3
-""" BaseCaching module
-"""
+""" BaseCache class """
 
-class BaseCaching():
-    """ BaseCaching defines:
-      - constants of your caching system
-      - where your data are stored (in a dictionary)
-    """
-    MAX_ITEMS = 4
+
+from base_caching import BaseCaching
+
+
+class BasicCache(BaseCaching):
+    """ BaseCache class """
 
     def __init__(self):
-        """ Initiliaze
-        """
-        self.cache_data = {}
-
-    def print_cache(self):
-        """ Print the cache
-        """
-        print("Current cache:")
-        for key in sorted(self.cache_data.keys()):
-            print("{}: {}".format(key, self.cache_data.get(key)))
+        """ Initialize the cache """
+        super().__init__()
 
     def put(self, key, item):
-        """ Add an item in the cache
-        """
-        raise NotImplementedError("put must be implemented in your cache class")
+        """ Assign the item to the dictionary """
+        if key is not None and item is not None:
+            self.cache_data[key] = item
 
     def get(self, key):
-        """ Get an item by key
-        """
-        raise NotImplementedError("get must be implemented in your cache class")
+        """ Retrieve the item from the dictionary """
+        if key is None:
+            return None
+        return self.cache_data.get(key)
