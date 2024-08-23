@@ -37,6 +37,7 @@ class LRUCache(BaseCaching):
             for k in self.iteration_count:
                 if k != key:
                     self.iteration_count[k] += 1
+
     def get(self, key):
         """ Retrieve the item from the dictionary """
         if key is None or key not in self.cache_data:
