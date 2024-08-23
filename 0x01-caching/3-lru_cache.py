@@ -42,11 +42,7 @@ class LRUCache(BaseCaching):
         """ Retrieve the item from the dictionary """
         if key is None or key not in self.cache_data:
             return None
-        
-        # Reset the counter of the accessed key to 0
         self.iteration_count[key] = 0
-
-        # Increment all other counters
         for k in self.iteration_count:
             if k != key:
                 self.iteration_count[k] += 1
