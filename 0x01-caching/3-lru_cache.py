@@ -21,7 +21,8 @@ class LRUCache(BaseCaching):
             else:
                 if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                     # Find the key with the highest iteration count (least recently used)
-                    lru_key = max(self.iteration_count, key=self.iteration_count.get)
+                    m = self.iteration_count.get
+                    lru_key = max(self.iteration_count, m)
                     del self.cache_data[lru_key]
                     del self.iteration_count[lru_key]
                     print("DISCARD: {}".format(lru_key))
