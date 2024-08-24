@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """ Module that defines the index_range function. """
 
+
 from typing import Tuple
+
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """ Calculate the start and end index for a given page and page size.
-    
     Args:
         page (int): The current page number (1-indexed).
         page_size (int): The number of items per page.
