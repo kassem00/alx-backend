@@ -16,8 +16,11 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    return request.args.get('lang') or
-request.accept_languages.best_match(app.config['LANGUAGES'])
+    """ determine best lang ever created """
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    return request.accept_languages.best_match(['en', 'fr'])
 
 
 @app.route("/")
