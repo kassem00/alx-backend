@@ -26,6 +26,9 @@ def get_locale():
     return request.accept_languages.best_match(['en', 'fr'])
 
 
+app.jinja_env.globals['get_locale'] = get_locale
+
+
 @app.route("/")
 def index():
     return render_template("3-index.html")
