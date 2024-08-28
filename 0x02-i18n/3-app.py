@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""Setup a Flask app with Babel for i18n and l10n"""
+
+
 from flask import Flask, render_template, request
 from flask_babel import Babel, _, gettext
 
@@ -26,6 +29,7 @@ def get_locale():
 @app.route("/")
 def index():
     return render_template("3-index.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
