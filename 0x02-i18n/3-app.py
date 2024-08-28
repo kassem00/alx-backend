@@ -2,8 +2,8 @@
 """Setup a Flask app with Babel for i18n and l10n"""
 
 
-from flask import Flask, render_template, request
-from flask_babel import Babel, _, gettext
+from flask import Flask, render_template, request, g
+from flask_babel import Babel, _, gettext, get_locale
 
 
 class Config:
