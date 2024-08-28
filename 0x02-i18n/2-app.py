@@ -33,6 +33,7 @@ def get_locale():
         return user.locale
     return request.accept_languages.best_match(['en', 'fr'])
 
+
 if __name__ == "__main__":
     """ if function in main """
     app.run(debug=True, host="0.0.0.0")
