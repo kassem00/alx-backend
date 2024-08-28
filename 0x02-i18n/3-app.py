@@ -26,7 +26,8 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale() -> str:
-    """Determines the best match for the user's preferred language from the supported languages."""
+    """Determines the best match for the user's
+    preferred language from the supported languages."""
     user = getattr(g, 'user', None)
     if user is not None:
         return user.locale
@@ -38,7 +39,9 @@ app.jinja_env.globals['get_locale'] = get_locale
 
 @app.route("/")
 def index() -> str:
-    """Renders the homepage template, applying the appropriate translations based on the user's language preference."""
+    """
+    Renders the homepage template, applying the appropriate
+    translations based on the user's language preference."""
     return render_template("3-index.html")
 
 
