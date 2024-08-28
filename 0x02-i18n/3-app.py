@@ -7,6 +7,7 @@ from flask_babel import Babel, _, gettext, get_locale
 
 
 class Config:
+    """Configuration class for Flask app"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -31,8 +32,10 @@ app.jinja_env.globals['get_locale'] = get_locale
 
 @app.route("/")
 def index():
+    """ index fun """
     return render_template("3-index.html")
 
 
 if __name__ == "__main__":
+    """ index fun """
     app.run(debug=True, host="0.0.0.0")
