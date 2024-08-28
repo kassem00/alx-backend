@@ -27,6 +27,7 @@ def index():
 
 @babel.localeselector
 def get_locale():
+    """ determine best lang ever created """
     user = getattr(g, 'user', None)
     if user is not None:
         return user.locale
