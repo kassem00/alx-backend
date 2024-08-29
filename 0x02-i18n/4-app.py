@@ -32,7 +32,7 @@ app.jinja_env.globals['get_locale'] = get_locale
 @app.route("/")
 def index() -> str:
     """Render homepage."""
-    return render_template("3-index.html")
+    return render_template("4-index.html")
 
 
 if __name__ == "__main__":
