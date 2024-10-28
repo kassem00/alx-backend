@@ -23,8 +23,12 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """ Calculate the start and end index for a given page and page size."""
-        unittest.assertEqual(page, int)
-        start_index = (page - 1) * page_size
-        end_index = page * page_size
-        return (start_index, end_index)
+        """Fetch a page of data, with checks on input values and boundaries."""
+        assert isinstance(page, int) and page > 0, "Page must be an integer > 0"
+        assert isinstance(page_size, int) and page_size > 0,\
+            "Page size must be an integer > 0"
+
+        start_index, end_index = (page - 1) * page_size, page * page_size
+        data = self.dataset()
+
+        return data[start_index:end_index] if start_index < len(data) else []
