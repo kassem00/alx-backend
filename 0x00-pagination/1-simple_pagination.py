@@ -31,8 +31,10 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Fetch a page of data with checks on input values."""
-        assert isinstance(page, int) and page > 0, "Page must be an integer > 0"
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be an integer > 0"
+        assert isinstance(page, int) and page > 0, "\
+        Page must be an integer > 0"
+        assert isinstance(page_size, int) and page_size > 0, "\
+        Page size must be an integer > 0"
 
         start_index, end_index = index_range(page, page_size)
         data = self.dataset()
