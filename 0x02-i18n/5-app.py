@@ -22,9 +22,10 @@ babel = Babel(app)
 def get_locale() -> str:
     """Get user's locale."""
     locale = request.args.get('locale')
-    if locale in app.config['LANGUAGES']:
+    match_ = app.config['LANGUAGES']
+    if locale in match_:
         return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(match_)
 
 
 app.jinja_env.globals['get_locale'] = get_locale
