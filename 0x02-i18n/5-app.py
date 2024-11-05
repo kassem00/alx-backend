@@ -1,41 +1,35 @@
-#!/usr/bin/env python3
-"""Flask app with Babel for i18n and l10n."""
-
-
-from flask import Flask, render_template, request, g
-from flask_babel import Babel, _, gettext, get_locale
-
-
-class Config:
-    """Flask app config."""
-    LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+from flask import Flask, g, render_template, request
+"""
+mock user login system.
+"""
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
-babel = Babel(app)
+
+# Mock user database
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
 
 
-@babel.localeselector
-def get_locale() -> str:
+def get_user():
     """Get user's locale."""
-    locale = request.args.get('locale')
-    match_ = app.config['LANGUAGES']
-    if locale in match_:
-        return locale
-    return request.accept_languages.best_match(match_)
+    user_id = request.args.get("login_as")
+    if user_id is None:
+        return None
+    return users.get(int(user_id))
 
 
-app.jinja_env.globals['get_locale'] = get_locale
+@app.before_request
+def before_request():
+    """ before request """
+    g.user = get_user()
 
 
-@app.route("/")
-def index() -> str:
-    """Render homepage."""
-    return render_template("4-index.html")
-
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+@app.route('/')
+def index():
+    """ index page  """
+    return render_template('5-index.html')
